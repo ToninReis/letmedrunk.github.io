@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ficha de Avaliação Cervejeira</title>
+    <style>
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            margin: 0; 
+            padding: 15px; 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333; 
+            min-height: 100vh;
+        }
+        .container { 
+            background-color: #fff; 
+            padding: 25px; 
+            border-radius: 15px; 
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1); 
+            max-width: 600px; 
+            margin: auto;
+            backdrop-filter: blur(10px);
+        }
+        h1 { 
+            color: #2c3e50; 
+            text-align: center;
+            border-bottom: 3px solid #3498db; 
+            padding-bottom: 15px; 
+            margin-bottom: 25px;
+            font-size: 1.8em;
+        }
+        h2 { 
+            color: #34495e; 
+            border-bottom: 2px solid #ecf0f1; 
+            padding-bottom: 10px; 
+            margin-top: 30px;
+            font-size: 1.3em;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .section { 
+            margin-bottom: 25px; 
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #3498db;
+        }
+        .section-title { 
+            font-weight: bold; 
+            margin-bottom: 15px; 
+            display: block; 
+            color: #2c3e50;
+            font-size: 1.1em;
+        }
+        .field-group { 
+            margin-bottom: 20px; 
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .field-group label { 
+            display: block;
+            margin-bottom: 8px; 
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        .field-group input[type="text"], 
+        .field-group input[type="date"] { 
+            width: 100%; 
+            padding: 12px; 
+            border: 2px solid #e1e8ed; 
+            border-radius: 8px; 
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+            box-sizing: border-box;
+        }
+        .field-group input[type="text"]:focus,
+        .field-group input[type="date"]:focus {
+            border-color: #3498db;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+        }
+        .checkbox-group { 
+            margin-top: 10px; 
+            margin-bottom: 15px; 
+        }
+        .checkbox-group label { 
+            display: block;
+            margin-bottom: 12px; 
+            padding: 10px;
+            background-color: #fff;
+            border: 2px solid #e1e8ed;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: normal;
+        }
+        .checkbox-group label:hover {
+            background-color: #f8f9fa;
+            border-color: #3498db;
+        }
+        .checkbox-group input[type="checkbox"] { 
+            margin-right: 10px; 
+            transform: scale(1.2);
+            accent-color: #3498db;
+        }
+        .checkbox-group input[type="checkbox"]:checked + span {
+            color: #3498db;
+            font-weight: 600;
+        }
+        textarea { 
+            width: 100%; 
+            padding: 12px; 
+            border: 2px solid #e1e8ed; 
+            border-radius: 8px; 
+            min-height: 100px; 
+            margin-top: 8px; 
+            font-family: inherit;
+            font-size: 16px;
+            resize: vertical;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease;
+        }
+        textarea:focus {
+            border-color: #3498db;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+        }
+        .score-input { 
+            width: 80px; 
+            padding: 8px; 
+            border: 2px solid #e1e8ed; 
+            border-radius: 6px; 
+            font-size: 16px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .score-input:focus {
+            border-color: #3498db;
+            outline: none;
+        }
+        .instructions {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+        .instructions h3 {
+            margin-top: 0;
+            color: white;
+        }
+        .instructions ul {
+            padding-left: 20px;
+        }
+        .instructions li {
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+        .creator-info {
+            text-align: center;
+            color: #7f8c8d;
+            font-style: italic;
+            margin-bottom: 25px;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+        }
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            .container {
+                padding: 20px;
+            }
+            h1 {
+                font-size: 1.5em;
+            }
+            h2 {
+                font-size: 1.2em;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .score-input {
+                margin-top: 10px;
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Súmula de Avaliação de Cerveja</h1>
+        <div class="creator-info">
+            <p>Elaborada pelo cervejeiro Antonio Reis</p>
+        </div>
+
+        <div class="field-group">
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome">
+        </div>
+        
+        <div class="field-group">
+            <label for="nomeCerveja">Nome da Cerveja:</label>
+            <input type="text" id="nomeCerveja" name="nomeCerveja">
+        </div>
+        
+        <div class="field-group">
+            <label for="dataAvaliacao">Data da Avaliação:</label>
+            <input type="date" id="dataAvaliacao" name="dataAvaliacao">
+        </div>
+        
+        <div class="field-group">
+            <label for="estiloCerveja">Estilo da Cerveja:</label>
+            <input type="text" id="estiloCerveja" name="estiloCerveja">
+        </div>
+
+        <h2>Aroma <input type="text" class="score-input" placeholder="___/12"></h2>
+        <div class="section">
+            <span class="section-title">Malte:</span>
+            <div class="checkbox-group">
+                <label><input type="checkbox" name="aromaMalte" value="Nenhum"><span>Nenhum</span></label>
+                <label><input type="checkbox" name="aromaMalte" value="Baixo"><span>Baixo</span></label>
+                <label><input type="checkbox" name="aromaMalte" value="Médio"><span>Médio</span></label>
+                <label><input type="checkbox" name="aromaMalte" value="Alto"><span>Alto</span></label>
+                <label><input type="checkbox" name="aromaMalte" value="Cereal"><span>Cereal</span></label>
+                <label><input type="checkbox" name="aromaMalte" value="Biscoito"><span>Biscoito</span></label>
+                <label><input type="checkbox" name="aromaMalte" value="Caramelo"><span>Caramelo</span></label>
+                <label><input type="checkbox" name="aromaMalte" value="Maltado"><span>Maltado</span></label>
+                <label><input type="checkbox" name="aromaMalte" value="Tostado"><span>Tostado</span></label>
+                <label><input type="checkbox" name="aromaMalte" value="Torrado"><span>Torrado</span></label>
+            </div>
+
+            <span class="section-title">Lúpulo:</span>
+            <div class="checkbox-group">
+                <label><input type="checkbox" name="aromaLupulo" value="Nenhum"><span>Nenhum</span></label>
+                <label><input type="checkbox" name="aromaLupulo" value="Baixo"><span>Baixo</span></label>
+                <label><input type="checkbox" name="aromaLupulo" value="Médio"><span>Médio</span></label>
+                <label><input type="checkbox" name="aromaLupulo" value="Alto"><span>Alto</span></label>
+                <label><input type="checkbox" name="aromaLupulo" value="Cítrico"><span>Cítrico</span></label>
+                <label><input type="checkbox" name="aromaLupulo" value="Condimentado"><span>Condimentado</span></label>
+                <label><input type="checkbox" name="aromaLupulo" value="Floral"><span>Floral</span></label>
+                <label><input type="checkbox" name="aromaLupulo" value="Frutado"><span>Frutado</span></label>
+                <label><input type="checkbox" name="aromaLupulo" value="Gramíneo"><span>Gramíneo</span></label>
+                <label><input type="checkbox" name="aromaLupulo" value="Herbal"><span>Herbal</span></label>
+                <label><input type="checkbox" name="aromaLupulo" value="Resinoso"><span>Resinoso</span></label>
+                <label><input type="checkbox" name="aromaLupulo" value="Terroso"><span>Terroso</span></label>
+            </div>
+
+            <span class="section-title">Fermentação:</span>
+            <div class="checkbox-group">
+                <label><input type="checkbox" name="aromaFermentacao" value="Nenhum"><span>Nenhum</span></label>
+                <label><input type="checkbox" name="aromaFermentacao" value="Baixo"><span>Baixo</span></label>
+                <label><input type="checkbox" name="aromaFermentacao" value="Médio"><span>Médio</span></label>
+                <label><input type="checkbox" name="aromaFermentacao" value="Alto"><span>Alto</span></label>
+                <label><input type="checkbox" name="aromaFermentacao" value="Neutro"><span>Neutro</span></label>
+                <label><input type="checkbox" name="aromaFermentacao" value="Alcoólico"><span>Alcoólico</span></label>
+                <label><input type="checkbox" name="aromaFermentacao" value="Banana"><span>Banana</span></label>
+                <label><input type="checkbox" name="aromaFermentacao" value="Condimentado"><span>Condimentado</span></label>
+                <label><input type="checkbox" name="aromaFermentacao" value="Tropicais"><span>Tropicais</span></label>
+                <label><input type="checkbox" name="aromaFermentacao" value="Secas"><span>Secas</span></label>
+                <label><input type="checkbox" name="aromaFermentacao" value="Vermelhas"><span>Vermelhas</span></label>
+            </div>
+        </div>
+
+        <h2>Aparência <input type="text" class="score-input" placeholder="___/3"></h2>
+        <div class="section">
+            <span class="section-title">Cor:</span>
+            <div class="checkbox-group">
+                <label><input type="checkbox" name="aparenciaCor" value="Palha"><span>Palha</span></label>
+                <label><input type="checkbox" name="aparenciaCor" value="Amarela"><span>Amarela</span></label>
+                <label><input type="checkbox" name="aparenciaCor" value="Dourada"><span>Dourada</span></label>
+                <label><input type="checkbox" name="aparenciaCor" value="Âmbar"><span>Âmbar</span></label>
+                <label><input type="checkbox" name="aparenciaCor" value="Marrom"><span>Marrom</span></label>
+                <label><input type="checkbox" name="aparenciaCor" value="Escura"><span>Escura</span></label>
+            </div>
+
+            <span class="section-title">Espuma:</span>
+            <div class="checkbox-group">
+                <label><input type="checkbox" name="aparenciaEspuma" value="Branca"><span>Branca</span></label>
+                <label><input type="checkbox" name="aparenciaEspuma" value="Marfim"><span>Marfim</span></label>
+                <label><input type="checkbox" name="aparenciaEspuma" value="Bege"><span>Bege</span></label>
+                <label><input type="checkbox" name="aparenciaEspuma" value="Marrom"><span>Marrom</span></label>
+                <label><input type="checkbox" name="aparenciaEspuma" value="Escura"><span>Escura</span></label>
+            </div>
+
+            <span class="section-title">Limpidez:</span>
+            <div class="checkbox-group">
+                <label><input type="checkbox" name="aparenciaLimpidez" value="Brilhante"><span>Brilhante</span></label>
+                <label><input type="checkbox" name="aparenciaLimpidez" value="Turva"><span>Turva</span></label>
+                <label><input type="checkbox" name="aparenciaLimpidez" value="Opaca"><span>Opaca</span></label>
+            </div>
+            
+            <span class="section-title">Limpidez (Intensidade):</span>
+            <div class="checkbox-group">
+                <label><input type="checkbox" name="aparenciaLimpidezIntensidade" value="Baixa"><span>Baixa</span></label>
+                <label><input type="checkbox" name="aparenciaLimpidezIntensidade" value="Média"><span>Média</span></label>
+                <label><input type="checkbox" name="aparenciaLimpidezIntensidade" value="Alta"><span>Alta</span></label>
+            </div>
+        </div>
+
+        <h2>Sabor <input type="text" class="score-input" placeholder="___/20"></h2>
+        <div class="section">
+            <span class="section-title">Malte:</span>
+            <div class="checkbox-group">
+                <label><input type="checkbox" name="saborMalte" value="Nenhum"><span>Nenhum</span></label>
+                <label><input type="checkbox" name="saborMalte" value="Baixo"><span>Baixo</span></label>
+                <label><input type="checkbox" name="saborMalte" value="Médio"><span>Médio</span></label>
+                <label><input type="checkbox" name="saborMalte" value="Alto"><span>Alto</span></label>
+            </div>
+
+            <span class="section-title">Lúpulo:</span>
+            <div class="checkbox-group">
+                <label><input type="checkbox" name="saborLupulo" value="Nenhum"><span>Nenhum</span></label>
+                <label><input type="checkbox" name="saborLupulo" value="Baixo"><span>Baixo</span></label>
+                <label><input type="checkbox" name="saborLupulo" value="Médio"><span>Médio</span></label>
+                <label><input type="checkbox" name="saborLupulo" value="Alto"><span>Alto</span></label>
+            </div>
+
+            <span class="section-title">Fermentação:</span>
+            <div class="checkbox-group">
+                <label><input type="checkbox" name="saborFermentacao" value="Nenhum"><span>Nenhum</span></label>
+                <label><input type="checkbox" name="saborFermentacao" value="Baixo"><span>Baixo</span></label>
+                <label><input type="checkbox" name="saborFermentacao" value="Médio"><span>Médio</span></label>
+                <label><input type="checkbox" name="saborFermentacao" value="Alto"><span>Alto</span></label>
+            </div>
+
+            <span class="section-title">Amargor:</span>
+            <div class="checkbox-group">
+                <label><input type="checkbox" name="saborAmargor" value="Nenhum"><span>Nenhum</span></label>
+                <label><input type="checkbox" name="saborAmargor" value="Baixo"><span>Baixo</span></label>
+                <label><input type="checkbox" name="saborAmargor" value="Médio"><span>Médio</span></label>
+                <label><input type="checkbox" name="saborAmargor" value="Alto"><span>Alto</span></label>
+            </div>
+
+            <span class="section-title">Balanço:</span>
+            <div class="checkbox-group">
+                <label><input type="checkbox" name="saborBalanco" value="Nenhum"><span>Nenhum</span></label>
+                <label><input type="checkbox" name="saborBalanco" value="Malte"><span>Malte</span></label>
+                <label><input type="checkbox" name="saborBalanco" value="Lúpulo"><span>Lúpulo</span></label>
+            </div>
+
+            <span class="section-title">Final/Retrogosto:</span>
+            <div class="checkbox-group">
+                <label><input type="checkbox" name="saborFinal" value="Nenhum"><span>Nenhum</span></label>
+                <label><input type="checkbox" name="saborFinal" value="Seco"><span>Seco</span></label>
+                <label><input type="checkbox" name="saborFinal" value="Doce"><span>Doce</span></label>
+            </div>
+        </div>
+
+        <h2>Sensação de Boca <input type="text" class="score-input" placeholder="___/5"></h2>
+        <div class="section">
+            <span class="section-title">Corpo:</span>
+            <div class="checkbox-group">
+                <label><input type="checkbox" name="sensacaoCorpo" value="Nenhum"><span>Nenhum</span></label>
+                <label><input type="checkbox" name="sensacaoCorpo" value="Baixo"><span>Baixo</span></label>
+                <label><input type="checkbox" name="sensacaoCorpo" value="Médio"><span>Médio</span></label>
+                <label><input type="checkbox" name="sensacaoCorpo" value="Alto"><span>Alto</span></label>
+            </div>
+
+            <span class="section-title">Cremosidade:</span>
+            <div class="checkbox-group">
+                <label><input type="checkbox" name="sensacaoCremosidade" value="Nenhum"><span>Nenhum</span></label>
+                <label><input type="checkbox" name="sensacaoCremosidade" value="Baixo"><span>Baixo</span></label>
+                <label><input type="checkbox" name="sensacaoCremosidade" value="Médio"><span>Médio</span></label>
+                <label><input type="checkbox" name="sensacaoCremosidade" value="Alto"><span>Alto</span></label>
+            </div>
+
+            <span class="section-title">Carbonatação:</span>
+            <div class="checkbox-group">
+                <label><input type="checkbox" name="sensacaoCarbonatacao" value="Nenhum"><span>Nenhum</span></label>
+                <label><input type="checkbox" name="sensacaoCarbonatacao" value="Baixo"><span>Baixo</span></label>
+                <label><input type="checkbox" name="sensacaoCarbonatacao" value="Médio"><span>Médio</span></label>
+                <label><input type="checkbox" name="sensacaoCarbonatacao" value="Alto"><span>Alto</span></label>
+            </div>
+
+            <span class="section-title">Acidez:</span>
+            <div class="checkbox-group">
+                <label><input type="checkbox" name="sensacaoAcidez" value="Nenhum"><span>Nenhum</span></label>
+                <label><input type="checkbox" name="sensacaoAcidez" value="Baixo"><span>Baixo</span></label>
+                <label><input type="checkbox" name="sensacaoAcidez" value="Médio"><span>Médio</span></label>
+                <label><input type="checkbox" name="sensacaoAcidez" value="Alto"><span>Alto</span></label>
+            </div>
+
+            <span class="section-title">Aquecimento:</span>
+            <div class="checkbox-group">
+                <label><input type="checkbox" name="sensacaoAquecimento" value="Nenhum"><span>Nenhum</span></label>
+                <label><input type="checkbox" name="sensacaoAquecimento" value="Baixo"><span>Baixo</span></label>
+                <label><input type="checkbox" name="sensacaoAquecimento" value="Médio"><span>Médio</span></label>
+                <label><input type="checkbox" name="sensacaoAquecimento" value="Alto"><span>Alto</span></label>
+            </div>
+
+            <span class="section-title">Adstringência:</span>
+            <div class="checkbox-group">
+                <label><input type="checkbox" name="sensacaoAdstringencia" value="Nenhum"><span>Nenhum</span></label>
+                <label><input type="checkbox" name="sensacaoAdstringencia" value="Baixo"><span>Baixo</span></label>
+                <label><input type="checkbox" name="sensacaoAdstringencia" value="Médio"><span>Médio</span></label>
+                <label><input type="checkbox" name="sensacaoAdstringencia" value="Alto"><span>Alto</span></label>
+            </div>
+        </div>
+
+        <h2>Impressão Geral <input type="text" class="score-input" placeholder="___/10"></h2>
+        <div class="section">
+            <span class="section-title">Precisão do Estilo Clássico:</span>
+            <div class="checkbox-group">
+                <label><input type="checkbox" name="precisaoEstilo" value="Fora do Exemplo"><span>Fora do Exemplo</span></label>
+                <label><input type="checkbox" name="precisaoEstilo" value="No Exemplo"><span>No Exemplo</span></label>
+            </div>
+
+            <span class="section-title">Considerações gerais sobre a cerveja:</span>
+            <textarea name="consideracoesGerais" placeholder="Digite suas considerações gerais sobre a cerveja..."></textarea>
+
+            <span class="section-title">Falhas:</span>
+            <textarea name="falhas" placeholder="Descreva as falhas identificadas..."></textarea>
+
+            <span class="section-title">Mérito Técnico:</span>
+            <textarea name="meritoTecnico" placeholder="Avalie o mérito técnico da cerveja..."></textarea>
+
+            <span class="section-title">Intangíveis:</span>
+            <div class="checkbox-group">
+                <label><input type="checkbox" name="intangiveis" value="Sem vida"><span>Sem vida</span></label>
+                <label><input type="checkbox" name="intangiveis" value="Maravilhosa"><span>Maravilhosa</span></label>
+            </div>
+        </div>
+
+        <div class="field-group">
+            <label for="notaFinal">Nota final:</label>
+            <input type="text" id="notaFinal" name="notaFinal" class="score-input" placeholder="0-50">
+        </div>
+
+        <div class="instructions">
+            <h3>Instruções para preenchimento da súmula</h3>
+            <ul>
+                <li>Marque a intensidade do atributo primário.</li>
+                <li>Marque os atributos secundários.</li>
+                <li>Dê uma nota para cada atributo.</li>
+                <li>A pontuação total é a soma de todas as notas.</li>
+            </ul>
+
+            <h3>Pontuação:</h3>
+            <ul>
+                <li><strong>Destacada 45 - 50:</strong> Exemplo do estilo classe mundial.</li>
+                <li><strong>Excelente 38 - 44:</strong> Exemplifica bem o estilo, requer mínimos ajustes.</li>
+                <li><strong>Muito Boa 30 - 37:</strong> Dentro dos parâmetros do estilo, falhas mínimas.</li>
+                <li><strong>Boa 21 - 29:</strong> Erra o alvo e/ou pequenas falhas.</li>
+                <li><strong>Razoável 14 - 20:</strong> Perfis indesejáveis. Desagradável.</li>
+                <li><strong>Problemática 0 - 13:</strong> Difícil de beber.</li>
+            </ul>
+        </div>
+
+    </div>
+</body>
+</html>
+
+Ficha_Avaliacao_Cervejeira_Mobile.html
+Exibindo Ficha_Avaliacao_Cervejeira_Mobile.html.
